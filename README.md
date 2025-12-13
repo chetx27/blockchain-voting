@@ -1,6 +1,6 @@
 # Blockchain Voting System
 
-A modular blockchain based voting system designed as a bridge between an educational Python prototype and a production ready Ethereum stack. The repository now contains both the original Python implementation and a Hardhat based Solidity implementation so the project can be used for learning, demos, and ETHGlobal style hackathon submissions.
+A modular blockchain based voting system designed as a bridge between an educational Python prototype and a production ready Ethereum stack. The repository now contains both the original Python implementation and a Hardhat based Solidity implementation so the project can be used for learning, demos, and Global style hackathon submissions.
 
 ## Architecture Overview
 
@@ -130,7 +130,7 @@ The deploy script prints the contract address, deployer, and basic network infor
 | `.env.example`              | Reference environment configuration template                    |
 | `.gitignore`                | Ignore rules for Node, Python, and build artifacts             |
 
-## ETHGlobal Ready Notes
+## Notes
 
 This repository is structured so it can be plugged into a full stack hackathon project without large refactors.
 
