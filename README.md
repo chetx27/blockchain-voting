@@ -142,10 +142,6 @@ This repository is structured so it can be plugged into a full stack hackathon p
   - `scripts/interact.js` can be reused directly in a live demo or expanded into a seed script for a frontend.
   - Local and testnet flows are symmetrical so teams can iterate quickly and then switch networks days before a demo.
 
-- Extension ideas
-  - Add a minimal frontend in a `client` folder that connects to the deployed contract and surfaces the full voter flow.
-  - Integrate identity or Sybil resistance modules such as World ID or BrightID to harden registration.
-  - Explore privacy preserving upgrades, for example moving vote choices into a commit reveal or zero knowledge flow.
 
 ## License
 
