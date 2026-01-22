@@ -7,7 +7,7 @@
 
 A secure, transparent, and decentralized voting system built on blockchain technology. This project bridges educational concepts with production-ready implementations, featuring both a Python prototype and a full Ethereum smart contract stack.
 
-## 📋 Table of Contents
+## Table of Contents
 
 - [Overview](#overview)
 - [Features](#features)
@@ -20,7 +20,7 @@ A secure, transparent, and decentralized voting system built on blockchain techn
 - [Contributing](#contributing)
 - [License](#license)
 
-## 🎯 Overview
+## Overview
 
 This blockchain voting system demonstrates how decentralized technology can revolutionize democratic processes by ensuring:
 
@@ -43,7 +43,7 @@ This repository provides **dual implementations** to support different learning 
    - Deployable to Ethereum mainnet and testnets
    - Integrates with modern Web3 tooling
 
-## ✨ Features
+## Features
 
 ### Election Management
 - 📅 Create elections with customizable time windows
@@ -69,7 +69,7 @@ This repository provides **dual implementations** to support different learning 
 - 🔍 Contract verification support
 - 🚀 Multi-network deployment scripts
 
-## 🏗️ Architecture
+## Architecture
 
 ### Smart Contract Architecture
 
@@ -100,7 +100,7 @@ VotingSystem.sol
 | Networks | Ethereum, Optimism, Arbitrum |
 | Python Prototype | Python 3.x |
 
-## 🚀 Getting Started
+## Getting Started
 
 ### Prerequisites
 
@@ -149,7 +149,7 @@ This demonstrates blockchain concepts with a simulated election including:
 - Chain validation
 - Vote recording and tallying
 
-## 📖 Usage
+## Usage
 
 ### Compile Smart Contracts
 
@@ -186,7 +186,7 @@ This script demonstrates:
 4. Casting votes
 5. Retrieving results
 
-## 🧪 Testing
+## Testing
 
 ### Run All Tests
 
@@ -216,7 +216,7 @@ npx hardhat coverage
 - ✅ Access control
 - ✅ Emergency pause functionality
 
-## 🌐 Deployment
+## Deployment
 
 ### Deploy to Sepolia Testnet
 
@@ -244,7 +244,7 @@ After deployment, verify your contract:
 npx hardhat verify --network sepolia DEPLOYED_CONTRACT_ADDRESS
 ```
 
-## 📁 Project Structure
+## Project Structure
 
 ```
 blockchain-voting/
@@ -290,7 +290,7 @@ Contributions are welcome! Here's how you can help:
 - 🌍 Multi-language support
 - 📝 Documentation improvements
 
-## 🛣️ Roadmap
+## Roadmap
 
 - [ ] Web3 frontend interface
 - [ ] IPFS integration for candidate data
@@ -300,7 +300,7 @@ Contributions are welcome! Here's how you can help:
 - [ ] Layer 2 optimization
 - [ ] Mobile app integration
 
-## 🔒 Security Considerations
+## Security Considerations
 
 This project implements industry-standard security practices:
 
@@ -310,25 +310,23 @@ This project implements industry-standard security practices:
 - **Input Validation**: Comprehensive checks on all inputs
 - **Pausable**: Emergency stop mechanism
 
-**⚠️ Important**: This is an educational/demo project. Before deploying to mainnet, conduct a professional security audit.
+** Important**: This is an educational/demo project. Before deploying to mainnet, conduct a professional security audit.
 
-## 📄 License
+## License
 
 This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
 
-## 👨‍💻 Author
-
-**Chet**
+## Author
 - GitHub: [@chetx27](https://github.com/chetx27)
 
-## 🙏 Acknowledgments
+## Acknowledgments
 
 - OpenZeppelin for security contracts
 - Hardhat team for development tools
 - Ethereum community for documentation
 - Contributors and testers
 
-## 📞 Support
+## Support
 
 If you have questions or need help:
 
@@ -337,5 +335,3 @@ If you have questions or need help:
 - ⭐ Star this repo if you find it helpful!
 
 ---
-
-**Made with ❤️ for transparent and secure voting systems**
