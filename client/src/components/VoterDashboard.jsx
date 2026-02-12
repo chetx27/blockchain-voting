@@ -16,11 +16,11 @@ function VoterDashboard({ contract, account, isRegistered }) {
   }, [contract, isRegistered]);
 
   useEffect(() => {
-    if (selectedElection && contract) {
+    if (selectedElection && contract && account) {
       loadCandidates();
       checkVotingStatus();
     }
-  }, [selectedElection]);
+  }, [selectedElection, contract, account]);
 
   const loadElections = async () => {
     try {
@@ -99,6 +99,10 @@ function VoterDashboard({ contract, account, isRegistered }) {
   };
 
   const isElectionActive = (election) => {
+    if (!election) {
+      return false;
+    }
+
     const now = Math.floor(Date.now() / 1000);
     return now >= election.startTime && now <= election.endTime && !election.finalized;
   };

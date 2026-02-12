@@ -2,7 +2,7 @@
 pragma solidity ^0.8.20;
 
 import "@openzeppelin/contracts/access/Ownable.sol";
-import "@openzeppelin/contracts/security/ReentrancyGuard.sol";
+import "@openzeppelin/contracts/utils/ReentrancyGuard.sol";
 import "@openzeppelin/contracts/utils/Pausable.sol";
 
 /**
@@ -118,7 +118,8 @@ contract VotingSystem is Ownable, ReentrancyGuard, Pausable {
         electionExists(_electionId) 
     {
         require(bytes(_name).length > 0, "Candidate name cannot be empty");
-        require(block.timestamp < elections[_electionId].startTime, "Cannot add candidates after election starts");
+        require(!elections[_electionId].finalized, "Election already finalized");
+        require(elections[_electionId].totalVotes == 0, "Cannot add candidates after voting begins");
         
         uint256 candidateId = candidateCounts[_electionId] + 1;
         candidateCounts[_electionId] = candidateId;
@@ -235,6 +236,7 @@ contract VotingSystem is Ownable, ReentrancyGuard, Pausable {
     function getCandidate(uint256 _electionId, uint256 _candidateId) 
         external 
         view 
+        electionExists(_electionId)
         returns (uint256 id, string memory name, uint256 voteCount) 
     {
         Candidate memory candidate = candidates[_electionId][_candidateId];
