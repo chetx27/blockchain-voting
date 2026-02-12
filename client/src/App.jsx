@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useCallback } from 'react';
 import { BrowserRouter as Router, Routes, Route, Link } from 'react-router-dom';
 import { ethers } from 'ethers';
 import VoterDashboard from './components/VoterDashboard';
@@ -17,8 +17,22 @@ function App() {
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState('');
 
+  const initializeContract = useCallback(async (walletAccount) => {
+    const browserProvider = new ethers.BrowserProvider(window.ethereum);
+    const signer = await browserProvider.getSigner(walletAccount);
+
+    setProvider(browserProvider);
+    setContract(new ethers.Contract(CONTRACT_ADDRESS, VotingSystemABI.abi, signer));
+  }, []);
+
   useEffect(() => {
     checkWalletConnection();
+
+    return () => {
+      if (window.ethereum) {
+        window.ethereum.removeListener('accountsChanged', handleAccountsChanged);
+      }
+    };
   }, []);
 
   useEffect(() => {
@@ -46,6 +60,11 @@ function App() {
       return;
     }
 
+    if (!CONTRACT_ADDRESS) {
+      setError('Missing VITE_CONTRACT_ADDRESS. Configure it in client/.env before connecting.');
+      return;
+    }
+
     try {
       setLoading(true);
       setError('');
@@ -54,13 +73,9 @@ function App() {
       const account = accounts[0];
       setAccount(account);
 
-      const provider = new ethers.BrowserProvider(window.ethereum);
-      setProvider(provider);
+      await initializeContract(account);
 
-      const signer = await provider.getSigner();
-      const contract = new ethers.Contract(CONTRACT_ADDRESS, VotingSystemABI.abi, signer);
-      setContract(contract);
-
+      window.ethereum.removeListener('accountsChanged', handleAccountsChanged);
       window.ethereum.on('accountsChanged', handleAccountsChanged);
       window.ethereum.on('chainChanged', () => window.location.reload());
 
@@ -71,12 +86,21 @@ function App() {
     }
   };
 
-  const handleAccountsChanged = (accounts) => {
+  const handleAccountsChanged = async (accounts) => {
     if (accounts.length === 0) {
       setAccount('');
       setContract(null);
-    } else {
-      setAccount(accounts[0]);
+      setProvider(null);
+      setIsOwner(false);
+      setIsRegistered(false);
+      return;
+    }
+
+    const nextAccount = accounts[0];
+    setAccount(nextAccount);
+
+    if (CONTRACT_ADDRESS) {
+      await initializeContract(nextAccount);
     }
   };
 

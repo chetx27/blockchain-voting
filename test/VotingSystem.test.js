@@ -84,15 +84,17 @@ describe('VotingSystem', function () {
       ).to.be.revertedWith('Candidate name cannot be empty');
     });
     
-    it('Should not allow adding candidates after election starts', async function () {
-      const { votingSystem } = await loadFixture(deployVotingSystemFixture);
+    it('Should not allow adding candidates after voting starts', async function () {
+      const { votingSystem, voter1 } = await loadFixture(deployVotingSystemFixture);
       
       await votingSystem.createElection('Test Election', 'Description', 7);
-      await time.increase(1);
+      await votingSystem.addCandidate(1, 'Alice');
+      await votingSystem.connect(voter1).registerVoter();
+      await votingSystem.connect(voter1).vote(1, 1);
       
       await expect(
         votingSystem.addCandidate(1, 'Bob')
-      ).to.be.revertedWith('Cannot add candidates after election starts');
+      ).to.be.revertedWith('Cannot add candidates after voting begins');
     });
   });
   
